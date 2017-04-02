@@ -6,6 +6,8 @@ public class Cell {
     private List<Wall> walls;
     private int x;
     private int z;
+    public int distance;
+    public Cell previous;
 
     public Cell(int x, int z)
     {

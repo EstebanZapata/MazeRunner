@@ -50,7 +50,7 @@ public class SpawnCell : MonoBehaviour
                 {
                     clone.GetChild(i).gameObject.SetActive(mazeCell.getWalls()[i].getIsActive());
 
-                    Debug.Log("x" + x + "z" + z + "Wall" + i + mazeCell.getWalls()[i].getIsActive());
+                   // Debug.Log("x" + x + "z" + z + "Wall" + i + mazeCell.getWalls()[i].getIsActive());
                 }
 				
 				yield return null;
@@ -62,4 +62,22 @@ public class SpawnCell : MonoBehaviour
 		firstPersonCam.SetActive(true);
 		cam1.SetActive(false);
 	}
+
+    public  Vector3 getMatrixVectorFromWorldVector(Vector3 position)
+    {
+        int mazeX = (int)((mazeSize - 1) - position.z/6);
+        int mazeZ = (int)(position.x / 6);
+        Vector3 matrixCoordinates = new Vector3(mazeX, 0, mazeZ);
+        return matrixCoordinates;
+    }
+
+    public Vector3 getWorldVectorFromMatrixVector(Vector3 matrixPosition)
+    {
+        int worldX = (int)matrixPosition.z * 6;
+        int worldZ = 6 * ((mazeSize - 1) - (int)matrixPosition.x);
+
+        Vector3 worldCoordinates = new Vector3(worldX, 0.51f, worldZ);
+
+        return worldCoordinates;
+    }
 }
